@@ -18,6 +18,9 @@ def main():
     if LINE != LINE.strip() or not LINE.strip():
         print("entry must not be only whitespace", file=sys.stderr)
         return 1
+    if "\n" in LINE or "\r" in LINE:
+        print("entry must be a single line", file=sys.stderr)
+        return 1
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
